@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="fade-in">
+    <h1 class="page-title" style="margin-bottom: 1.5rem;">Interactive Visualizer ⚡</h1>
+
+    <div class="tab-container">
+        <button class="tab-btn active" data-target="tab-single">📌 Single Value per Key</button>
+        <button class="tab-btn" data-target="tab-multi">📚 Multiple Values per Key</button>
+    </div>
+
+    <!-- Tab 1: Single Value -->
+    <div id="tab-single" class="tab-content active">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+            <div class="info-box" style="flex-grow: 1; margin-bottom: 0;">
+                <h3>Memory Mapping in Action</h3>
+                <p>Watch how Python maps unique keys to values. Adding a key that already exists will
+                    <strong>update</strong>
+                    its value, demonstrating the uniqueness property of dictionary keys.</p>
+            </div>
+            <button id="vis-reset-btn" class="tab-btn"
+                style="border-color: #EF4444; color: #EF4444; margin-left: 20px; white-space: nowrap;">Reset
+                Dictionary</button>
+        </div>
+
+        <div class="white-card" style="margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; color: #4F46E5;">Live Internal State</h3>
+            <div class="code-block" style="margin-bottom: 15px; font-weight: bold;" id="python-syntax-display">my_dict =
+                {}</div>
+            <div id="visualizer-container"
+                style="background-color: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 12px; padding: 40px; min-height: 250px; display: flex; flex-direction: column; gap: 12px; transition: all 0.3s ease;">
+            </div>
+        </div>
+
+        <div class="white-card">
+            <h3 style="margin-bottom: 20px;">Manipulate the Dictionary</h3>
+            <div
+                style="display: flex; gap: 15px; align-items: flex-end; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #E2E8F0;">
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">Key
+                        (e.g., "Score")</label>
+                    <input type="text" id="vis-key-input" placeholder="Enter key..."
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: monospace; font-size: 1rem;">
+                </div>
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">Value
+                        (e.g., 100)</label>
+                    <input type="text" id="vis-value-input" placeholder="Enter value..."
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: monospace; font-size: 1rem;">
+                </div>
+                <button id="vis-add-btn"
+                    style="background-color: #4F46E5; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 46px; transition: background-color 0.2s ease;">➕
+                    Add / Update</button>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: flex-end;">
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">Delete
+                        by Key</label>
+                    <input type="text" id="vis-del-key-input" placeholder="Enter key to delete..."
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: monospace; font-size: 1rem;">
+                </div>
+                <button id="vis-del-btn"
+                    style="background-color: #EF4444; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 46px; transition: background-color 0.2s ease;">🗑️
+                    Delete Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Multi Value -->
+    <div id="tab-multi" class="tab-content">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+            <div class="info-box" style="flex-grow: 1; margin-bottom: 0; border-left-color: #10B981;">
+                <h3>Mapping Names to Lists</h3>
+                <p>A complex dictionary can map a unique key to a <strong>List</strong> of values. Used often for
+                    datasets, like mapping a student name to all of their test scores.</p>
+            </div>
+            <button id="vis-multi-reset-btn" class="tab-btn"
+                style="border-color: #EF4444; color: #EF4444; margin-left: 20px; white-space: nowrap;">Reset
+                Dictionary</button>
+        </div>
+
+        <div class="white-card" style="margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; color: #10B981;">Live Multi-Value State</h3>
+            <div class="code-block" style="margin-bottom: 15px; font-weight: bold;" id="python-multi-syntax-display">
+                my_dict = {}</div>
+            <div id="visualizer-multi-container"
+                style="background-color: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 12px; padding: 40px; min-height: 250px; display: flex; flex-direction: column; gap: 12px; transition: all 0.3s ease;">
+            </div>
+        </div>
+
+        <div class="white-card">
+            <h3 style="margin-bottom: 20px;">Manipulate the Dataset</h3>
+            <div
+                style="display: flex; gap: 15px; align-items: flex-end; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #E2E8F0;">
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">Select
+                        Key (Student)</label>
+                    <select id="vis-multi-key-select"
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 1rem;"></select>
+                </div>
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">Append
+                        Score</label>
+                    <input type="number" id="vis-multi-val-input" placeholder="e.g. 95"
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: monospace; font-size: 1rem;">
+                </div>
+                <button id="vis-multi-append-btn"
+                    style="background-color: #10B981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 46px; transition: background-color 0.2s ease;">📥
+                    Append to List</button>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: flex-end;">
+                <div style="flex-grow: 1;">
+                    <label
+                        style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #475569;">New
+                        Student Name</label>
+                    <input type="text" id="vis-multi-new-key-input" placeholder="Enter name..."
+                        style="width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-family: monospace; font-size: 1rem;">
+                </div>
+                <button id="vis-multi-add-key-btn"
+                    style="background-color: #4F46E5; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 46px; transition: background-color 0.2s ease;">➕
+                    Add Empty Key</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/visualizer.js') }}"></script>
+{% endblock %}

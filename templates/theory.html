@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="fade-in">
+    <h1 class="page-title">Python Dictionaries (Unit 2)</h1>
+
+    <!-- Tab Controls matching the "Pill" design -->
+    <div class="tab-container">
+        <button class="tab-btn active" data-target="tab-concepts">💡 Concepts</button>
+        <button class="tab-btn" data-target="tab-props">⚙️ Properties</button>
+        <button class="tab-btn" data-target="tab-methods">🛠️ Methods</button>
+    </div>
+
+    <!-- Tab 1: Concepts -->
+    <div id="tab-concepts" class="tab-content active">
+        <div class="info-box">
+            <h3>1. Conceptual Framework</h3>
+            <p><strong>Definition:</strong> A dictionary is an <em>unordered</em>, <em>mutable</em>, and <em>indexed by
+                    keys</em> collection. Unlike lists, which use positional indices (0, 1, 2...), dictionaries use
+                <strong>Key-Value pairs</strong>.
+            </p>
+            <p><strong>Mapping:</strong> It is often called a "Mapping" or "Associative Array" because it maps a unique
+                Key to a specific Value.</p>
+            <p><strong>Syntax:</strong> Defined using curly braces <code>{}</code>. Items are separated by commas, and
+                keys are separated from values by colons <code>:</code>.</p>
+        </div>
+        <div class="code-block">
+            <span style="color:#f7768e;">my_dict</span> = {<span style="color:#e0af68;">"RollNo"</span>: <span
+                style="color:#ff9e64;">1</span>, <span style="color:#e0af68;">"Name"</span>: <span
+                style="color:#9ece6a;">"Riya"</span>, <span style="color:#e0af68;">"Marks"</span>: <span
+                style="color:#ff9e64;">95</span>}
+        </div>
+    </div>
+
+    <!-- Tab 2: Properties -->
+    <div id="tab-props" class="tab-content">
+        <div class="white-card">
+            <h3>Properties of Dictionaries</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Rule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Keys</strong></td>
+                        <td>Must be <strong>Unique</strong> and <strong>Immutable</strong> (e.g., Strings, Numbers, or
+                            Tuples).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Values</strong></td>
+                        <td>Can be of <strong>any data type</strong> and can be <strong>Duplicated</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ordering</strong></td>
+                        <td><strong>Unordered</strong> (Though modern Python ≥3.7 maintains insertion order, logically
+                            accessed by key).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mutability</strong></td>
+                        <td>The dictionary is <strong>mutable</strong>; you can add, remove, or change items after
+                            creation.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tab 3: Methods -->
+    <div id="tab-methods" class="tab-content">
+        <h3 style="margin-bottom: 20px;">Essential Methods & Functions</h3>
+
+        <details class="expander">
+            <summary>🛠️ dict()</summary>
+            <div class="expander-content">
+                <p><strong>Constructor to create a new dictionary.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = dict(name='Amit', age=16)<br>print(d)</div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">
+                            {'name': 'Amit', 'age': 16}</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ len(d)</summary>
+            <div class="expander-content">
+                <p><strong>Returns the number of items in the dictionary.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2, 'c': 3}<br>print(len(d))
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.keys()</summary>
+            <div class="expander-content">
+                <p><strong>Returns a view object of all keys.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2}<br>print(list(d.keys()))
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">['a',
+                            'b']</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.values()</summary>
+            <div class="expander-content">
+                <p><strong>Returns a view object of all values.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2}<br>print(list(d.values()))
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">[1, 2]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.items()</summary>
+            <div class="expander-content">
+                <p><strong>Returns a view of (key, value) tuples.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2}<br>print(list(d.items()))
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">[('a',
+                            1), ('b', 2)]</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.update(d2)</summary>
+            <div class="expander-content">
+                <p><strong>Merges dictionary d2 into d. Overwrites existing keys.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1}<br>d2 = {'b': 2, 'a':
+                            3}<br>d.update(d2)<br>print(d)</div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">{'a':
+                            3, 'b': 2}</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.get(key, default)</summary>
+            <div class="expander-content">
+                <p><strong>Safely fetches a value. Returns default if not found.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1}<br>print(d.get('b', 'Not Found'))
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">Not
+                            Found</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ del d[key]</summary>
+            <div class="expander-content">
+                <p><strong>Removes a specific key-value pair.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2}<br>del d['a']<br>print(d)
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">{'b':
+                            2}</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="expander">
+            <summary>🛠️ d.clear()</summary>
+            <div class="expander-content">
+                <p><strong>Removes all elements, leaving an empty dictionary.</strong></p>
+                <div class="code-layout">
+                    <div class="code-layout-column">
+                        <span class="label">Code Example:</span>
+                        <div class="code-block" style="padding: 10px;">d = {'a': 1, 'b': 2}<br>d.clear()<br>print(d)
+                        </div>
+                    </div>
+                    <div class="code-layout-column">
+                        <span class="label">Expected Output:</span>
+                        <div class="code-block" style="padding: 10px; background-color: #f1f5f9; color: #0f172a;">{}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+    </div>
+
+</div>
+{% endblock %}

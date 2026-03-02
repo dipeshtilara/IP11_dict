@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="fade-in">
+    <h1 class="page-title">Programs Library</h1>
+
+    <div style="display: flex; gap: 30px; margin-bottom: 40px;">
+        <!-- Left Sidebar: Program List -->
+        <div style="width: 280px; flex-shrink: 0;" class="white-card">
+            <h3 style="color: #4F46E5; margin-bottom: 15px; border-bottom: 2px solid #EEF2FF; padding-bottom: 10px;">
+                Program Library</h3>
+            <div id="program-list-container" style="display: flex; flex-direction: column; gap: 6px;">
+                <!-- JS will generate buttons here -->
+            </div>
+        </div>
+
+        <!-- Right Content: Program Details -->
+        <div style="flex-grow: 1;" class="white-card" id="program-detail-container">
+            <div id="prog-placeholder" style="text-align: center; color: #64748b; padding: 50px 0;">
+                <h2 style="color: #4F46E5; margin-bottom: 10px;">Select a program on the left.</h2>
+                <p>The problem statement, required skills, interactive code solution, and detailed explanations will
+                    appear here instantly.</p>
+            </div>
+
+            <!-- Hidden by default until a program is clicked -->
+            <div id="prog-content" style="display: none;" class="fade-in">
+                <span id="prog-level"
+                    style="background-color: #EEF2FF; color: #4F46E5; padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-bottom: 10px;">Phase</span>
+                <h2 id="prog-title" style="margin-bottom: 15px;">Target Title</h2>
+
+                <div class="info-box" style="margin-bottom: 25px;">
+                    <p><strong>📝 Task:</strong> <span id="prog-task"></span></p>
+                    <p><strong>🎯 Core Skill:</strong> <span id="prog-skill"
+                            style="color: #047857; font-weight: 600;"></span></p>
+                </div>
+
+                <h3 style="margin-bottom: 10px; font-size: 1.2rem;">Code Solution</h3>
+                <div class="code-block" style="margin-bottom: 25px;">
+                    <pre><code id="prog-code" style="background: transparent; color: inherit; padding: 0; font-family: 'Courier New', monospace; font-weight: normal; white-space: pre-wrap;"></code></pre>
+                </div>
+
+                <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Line-by-Line Logic Breakdown</h3>
+                <div id="prog-explanation"
+                    style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
+                    <!-- JS will inject ordered list here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/programs.js') }}"></script>
+{% endblock %}

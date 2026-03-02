@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Hub: Dictionaries</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Persistent Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2 class="brand">IP Dict XI</h2>
+        <ul class="nav-list">
+            <li>
+                <a href="{{ url_for('theory') }}" class="nav-link {% if active_page == 'theory' %}active{% endif %}">
+                    <span class="icon">📚</span> Theory
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('visualizer') }}" class="nav-link {% if active_page == 'visualizer' %}active{% endif %}">
+                    <span class="icon">⚡</span> Visualizer
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('codelab') }}" class="nav-link {% if active_page == 'codelab' %}active{% endif %}">
+                    <span class="icon">💻</span> Code Lab
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('programs') }}" class="nav-link {% if active_page == 'programs' %}active{% endif %}">
+                    <span class="icon">📝</span> Programs
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Dynamic Content Area -->
+    <main class="content-area">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+<!-- Core JS and module-specific JS blocks -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>
