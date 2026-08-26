@@ -767,40 +767,7 @@ print(d.get('b', 0))
             <h1>⚡ Dictionary Operations Visualizer</h1>
             <p class="subtitle">Memory Mapping & Key Operations In Action</p>
             
-            <div class="visualizer-layout">
-                <div class="visualizer-col-left">
-                    <div class="control-expander">
-                        <div class="expander-header"><i class="fa-solid fa-plus" style="color: #6366F1;"></i> Add / Update Key-Value Pair</div>
-                        <div class="form-group">
-                            <label>Enter Key:</label>
-                            <input type="text" id="vis-add-key" class="form-control" value="City">
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Value:</label>
-                            <input type="text" id="vis-add-val" class="form-control" value="Delhi">
-                        </div>
-                        <button class="btn-action" onclick="visualizerAdd()">Apply D[key] = value</button>
-                    </div>
-
-                    <div class="control-expander">
-                        <div class="expander-header"><i class="fa-solid fa-trash" style="color: #EF4444;"></i> Delete Key</div>
-                        <div class="form-group">
-                            <label>Select Key to delete:</label>
-                            <select id="vis-del-key" class="form-control"></select>
-                        </div>
-                        <button class="btn-action" style="background-color: #EF4444;" onclick="visualizerDelete()">Apply D.pop(key)</button>
-                    </div>
-
-                    <button class="btn-action btn-reset" onclick="visualizerReset()">🚨 Reset Dictionary</button>
-                </div>
-
-                <div class="visualizer-col-right">
-                    <h3>Live Internal State</h3>
-                    <pre><code id="live-code-syntax" style="color: #10B981; background: transparent; font-size: 1.1rem; padding: 0;">my_dict = {}</code></pre>
-                    
-                    <div id="vis-dict-memory"></div>
-                </div>
-            </div>
+            <iframe src="index.html" class="iframe-container" style="width: 100%; height: calc(100vh - 180px); border: none; border-radius: 12px; box-shadow: 0 4px 10px var(--shadow-color);"></iframe>
         </section>
 
         <!-- CODE LAB PAGE -->
@@ -909,7 +876,6 @@ print(d.get('b', 0))
 
             // Trigger Initial Configurations
             document.body.classList.add('dark-theme'); // default to dark
-            visualizerRender();
             renderCodelab();
             renderProgramsSidebar();
             loadProgram("1. Phonebook Lookup");
@@ -920,97 +886,7 @@ print(d.get('b', 0))
             example.classList.toggle('active');
         }
 
-        // --- 2. INTERACTIVE VISUALIZER STATE MACHINE ---
-        let visualizerDict = {
-            "Name": "Riya",
-            "RollNo": 1,
-            "Status": "Active"
-        };
-
-        function visualizerRender() {
-            const memoryContainer = document.getElementById('vis-dict-memory');
-            const deleteSelect = document.getElementById('vis-del-key');
-            const syntaxCode = document.getElementById('live-code-syntax');
-
-            memoryContainer.innerHTML = '';
-            deleteSelect.innerHTML = '';
-
-            const keys = Object.keys(visualizerDict);
-            
-            // Render syntax display
-            let items = keys.map(k => {
-                let v = visualizerDict[k];
-                let kRepr = typeof k === 'string' ? `"${k}"` : k;
-                let vRepr = typeof v === 'string' ? `"${v}"` : v;
-                return `${kRepr}: ${vRepr}`;
-            });
-            syntaxCode.textContent = `my_dict = {${items.join(', ')}}`;
-
-            if (keys.length === 0) {
-                memoryContainer.innerHTML = '<div style="color: #64748b; font-style: italic; text-align: center; padding: 30px;">Empty Dictionary {}</div>';
-                return;
-            }
-
-            // Render memory containers
-            let html = '<div class="dict-container">';
-            keys.forEach(k => {
-                let v = visualizerDict[k];
-                let kRepr = typeof k === 'string' ? `"${k}"` : k;
-                let vRepr = typeof v === 'string' ? `"${v}"` : v;
-
-                html += `
-                <div class="dict-row">
-                    <div class="key-badge">${kRepr}</div>
-                    <div class="mapping-arrow">→</div>
-                    <div class="value-area">
-                        <div class="value-badge scalar">${vRepr}</div>
-                    </div>
-                </div>`;
-
-                // Populate deletion select box options
-                let option = document.createElement('option');
-                option.value = k;
-                option.textContent = k;
-                deleteSelect.appendChild(option);
-            });
-            html += '</div>';
-            memoryContainer.innerHTML = html;
-        }
-
-        function visualizerAdd() {
-            const keyInput = document.getElementById('vis-add-key');
-            const valInput = document.getElementById('vis-add-val');
-            let key = keyInput.value.trim();
-            let val = valInput.value.trim();
-
-            if (!key) return;
-
-            // Numeric check conversions
-            if (!isNaN(val) && val !== '') {
-                val = Number(val);
-            }
-
-            visualizerDict[key] = val;
-            visualizerRender();
-        }
-
-        function visualizerDelete() {
-            const deleteSelect = document.getElementById('vis-del-key');
-            let key = deleteSelect.value;
-            if (key) {
-                delete visualizerDict[key];
-                visualizerRender();
-            }
-        }
-
-        function visualizerReset() {
-            visualizerDict = {
-                "Name": "Riya",
-                "RollNo": 1,
-                "Status": "Active"
-            };
-            visualizerRender();
-        }
+        // --- 2. INTERACTIVE VISUALIZER EMBEDDED ---
 
         // --- 3. CODELAB STEP-BY-STEP ENGINE ---
         const codelabEmpData = {"ID": 101, "Name": "Amit", "Salary": 45000};
