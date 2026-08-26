@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/hub.html" }
+  "routes": [
+    { "src": "^/$", "dest": "/hub.html" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
