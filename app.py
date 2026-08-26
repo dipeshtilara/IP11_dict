@@ -40,6 +40,14 @@ st.markdown(f"""
     header {{visibility: hidden;}}
     div[data-testid="stHeader"] {{display: none;}}
     
+    /* Make sidebar permanent: hide collapse/expand controls */
+    button[data-testid="stSidebarCollapseButton"] {{
+        display: none !important;
+    }}
+    button[data-testid="collapsedControl"] {{
+        display: none !important;
+    }}
+    
     /* Main Background & Fonts */
     .stApp {{
         background-color: {bg_app} !important;
