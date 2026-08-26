@@ -40,12 +40,34 @@ st.markdown(f"""
     header {{visibility: hidden;}}
     div[data-testid="stHeader"] {{display: none;}}
     
-    /* Make sidebar permanent: hide collapse/expand controls */
+    /* Make sidebar permanent: hide collapse button inside sidebar */
     button[data-testid="stSidebarCollapseButton"] {{
         display: none !important;
     }}
+    
+    /* Make the expand control prominent and pulsing if the sidebar is collapsed */
     button[data-testid="collapsedControl"] {{
-        display: none !important;
+        background-color: #6366F1 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #4F46E5 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        position: fixed !important;
+        top: 15px !important;
+        left: 15px !important;
+        z-index: 999999 !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        animation: sidebarPulse 2s infinite !important;
+    }}
+    
+    @keyframes sidebarPulse {{
+        0% {{ box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }}
+        70% {{ box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }}
+        100% {{ box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }}
     }}
     
     /* Main Background & Fonts */
