@@ -90,7 +90,7 @@ st.markdown(f"""
     }}
     
     /* Force all text in the main content area to follow theme colors */
-    .stApp p, .stApp li, .stApp label, .stApp span, .stApp div, .stApp blockquote, .stApp td, .stApp th {{
+    .stApp p, .stApp li, .stApp label, .stApp span, .stApp blockquote, .stApp td, .stApp th {{
         color: {fg_app} !important;
     }}
     
@@ -506,7 +506,7 @@ elif page == "codelab":
             active_val = emp_data[active_key]
             
             st.markdown(f"""
-            <div style="background: #FFFFFF; padding: 15px; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 15px;">
+            <div style="background: {card_bg}; color: {fg_app}; padding: 15px; border-radius: 12px; border: 1px solid {card_border}; margin-bottom: 15px;">
                 <div style="font-size: 10px; font-weight: bold; color: #6366F1; text-transform: uppercase;">Current key binding</div>
                 <div style="font-size: 24px; font-weight: 800; color: #EC4899; font-family: monospace;">"{active_key}"</div>
                 <div style="font-size: 10px; font-weight: bold; color: #6366F1; text-transform: uppercase; margin-top: 10px;">Evaluation (emp[key])</div>
@@ -515,14 +515,14 @@ elif page == "codelab":
             """, unsafe_allow_html=True)
         elif st.session_state.loop_idx >= len(keys_list):
             st.markdown("""
-            <div style="background: rgba(16,185,129,0.1); border: 1px solid #10B981; padding: 25px; border-radius: 12px; text-align: center; color: #047857; font-weight: bold;">
+            <div style="background: rgba(16,185,129,0.1); border: 1px solid #10B981; padding: 25px; border-radius: 12px; text-align: center; color: #10B981; font-weight: bold;">
                 🎉 Loop Finished Successfully!
             </div>
             """, unsafe_allow_html=True)
         else:
-            st.markdown("""
-            <div style="background: #F1F5F9; border: 1px dashed #CBD5E1; padding: 25px; border-radius: 12px; text-align: center; color: #64748b; font-style: italic;">
-                Loop not started. Click "Step Forward"
+            st.markdown(f"""
+            <div style="background: {method_bg}; border: 1px dashed {card_border}; padding: 25px; border-radius: 12px; text-align: center; color: {fg_app}; font-style: italic; opacity: 0.8;">
+                Loop not started. Click \"Step Forward\"
             </div>
             """, unsafe_allow_html=True)
 
