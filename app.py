@@ -37,8 +37,20 @@ st.markdown(f"""
     /* Hide Streamlit default top bar and footer */
     #MainMenu {{visibility: hidden;}}
     footer {{visibility: hidden;}}
-    header {{visibility: hidden;}}
-    div[data-testid="stHeader"] {{display: none;}}
+    
+    /* Transparent header, hide right-side buttons but preserve collapsedControl */
+    header {{
+        background-color: transparent !important;
+    }}
+    div[data-testid="stHeader"] {{
+        background-color: transparent !important;
+    }}
+    div[data-testid="stHeader"] button:not([data-testid="collapsedControl"]) {{
+        display: none !important;
+    }}
+    div[data-testid="stHeader"] a {{
+        display: none !important;
+    }}
     
     /* Make sidebar permanent: hide collapse button inside sidebar */
     button[data-testid="stSidebarCollapseButton"] {{
